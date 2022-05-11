@@ -16,7 +16,7 @@ console.log(cells)
 // - put the mole image in the chosen cell (appendChild method?)
 
 function mole() {
-  let img = document.createElement('img')
+  let img = document.createElement('IMG')
   img.src = 'mole.PNG'
   img.width = '70'
   let cell = cells[Math.floor(Math.random() * cells.length)]
@@ -40,6 +40,8 @@ function whackedMole(e) {
     const audio = new Audio()
     audio.src = 'whack-audio.wav'
     audio.play()
-  } else alert('Oops! you missed')
-  mole()
+    mole()
+  } else {
+    return alert('Oops! you missed')
+  }
 }
