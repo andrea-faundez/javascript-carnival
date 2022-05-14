@@ -6,88 +6,51 @@ console.log('Dress The Clown!')
 
 // changing the head
 let clothingIndex = 0
-let headIndex = 0
-let bodyIndex = 0
-let shoesIndex = 0
+let indexes = [0, 0, 0]
 
-function changeClownHead() {
-  let clownHead = document.getElementById('head')
-  let headSrc = './images/head' + headIndex + '.png'
-  if (headIndex >= 6) {
-    headIndex = 0
-  } else if (headIndex <= 0) {
-    headIndex = 6
-  } else {
-    clownHead.src = headSrc
-  }
+const head = document.getElementById('head')
+const body = document.getElementById('body')
+const shoes = document.getElementById('shoes')
+
+let imgs = [head, body, shoes]
+let strings = ['head', 'body', 'shoes']
+
+function changeHorizontal(shift) {
+  let index = indexes[clothingIndex]
+  let image = imgs[clothingIndex]
+  let str = strings[clothingIndex]
+
+  index += shift
+
+  if (index < 0) index = 5
+
+  if (index > 5) index = 0
+
+  indexes[clothingIndex] = index
+
+  image.src = './images/' + str + index + '.png'
 }
 
-function changeClownBody() {
-  let clownBody = document.getElementById('body')
-  let bodySrc = './images/body' + bodyIndex + '.png'
-  if (bodyIndex >= 6) {
-    bodyIndex = 0
-  } else if (bodyIndex <= 0) {
-    bodyIndex = 6
-  } else {
-    clownBody.src = bodySrc
-  }
-}
-
-function changeClownShoes() {
-  let clonwShoes = document.getElementById('shoes')
-  let shoesSrc = './images/shoes' + shoesIndex + '.png'
-  if (shoesIndex >= 6) {
-    shoesIndex = 0
-  } else if (shoesIndex <= 0) {
-    shoesIndex = 6
-  } else {
-    clonwShoes.src = shoesSrc
-  }
-}
-
-function bodyParts() {
-  if (clothingIndex >= 2) {
-    clothingIndex = 2
-  } else if (clothingIndex <= 0) {
-    clothingIndex = 0
-  } else {
-    clothingIndex
-  }
+function changeVertical(shift) {
+  clothingIndex += shift
+  if (clothingIndex > 2) clothingIndex = 0
+  if (clothingIndex < 0) clothingIndex = 2
 }
 
 window.addEventListener('keydown', function (event) {
   const key = event.code
   switch (event.code) {
     case 'ArrowUp':
-      clothingIndex--
+      changeVertical(-1)
       break
     case 'ArrowDown':
-      clothingIndex++
+      changeVertical(1)
       break
     case 'ArrowRight':
-      if (clothingIndex === 0) {
-        headIndex++
-        changeClownHead()
-      } else if (clothingIndex === 1) {
-        bodyIndex++
-        changeClownBody()
-      } else if (clothingIndex === 2) {
-        shoesIndex++
-        changeClownShoes()
-      }
+      changeHorizontal(-1)
       break
     case 'ArrowLeft':
-      if (clothingIndex === 0) {
-        headIndex--
-        changeClownHead()
-      } else if (clothingIndex === 1) {
-        bodyIndex--
-        changeClownBody()
-      } else if (clothingIndex === 2) {
-        shoesIndex--
-        changeClownShoes()
-      }
+      changeHorizontal(1)
       break
   }
 })
