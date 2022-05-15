@@ -29,6 +29,8 @@ console.log('Inflate The Unicorn!')
 //    - [i] has to be the same number that the unicorn is currently at.
 //    - skip the loop and replace i fo[object[imageid]]
 
+// new solution to change the images: eliminate array, new sorce = './images/unicorn-' + unicorns[unicornId] + '.png'
+
 //my object
 let unicorns = {
   unicorn1: 0,
