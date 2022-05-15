@@ -25,9 +25,9 @@ console.log('Inflate The Unicorn!')
 //    - if it is at any other number, the function will add 1 number to the unicorn and then,
 //    - change the image: get element by id and change the sorce
 //    - new sorce will be the array[i] after looping the array:
-//      -> I didn't work! :( it displays the last image at the first click and the message at the forth click
+//      -> I didn't work :( it displays the last image with the first click and the message at the forth click
 //    - [i] has to be the same number that the unicorn is currently at.
-//    - array[i] will be expressed as array[object[imageid]]
+//    - skip the loop and replace i fo[object[imageid]]
 
 //my object
 let unicorns = {
@@ -36,13 +36,6 @@ let unicorns = {
   unicorn3: 0,
 }
 
-let imgArray = [
-  './images/unicorn-0.png',
-  './images/unicorn-1.png',
-  './images/unicorn-2.png',
-  './images/unicorn-3.png',
-]
-
 //function that changes the images.
 function inflate(unicornId) {
   if (unicorns[unicornId] === 3) {
@@ -50,8 +43,7 @@ function inflate(unicornId) {
   } else {
     unicorns[unicornId] = unicorns[unicornId] + 1
     console.log(unicornId + ' is at ballon level ' + unicorns[unicornId])
-    //for (i = 0; i < imgArray.length; i++)
-    //document.getElementById(unicornId).src = imgArray[i]
-    document.getElementById(unicornId).src = imgArray[unicorns[unicornId]]
+    document.getElementById(unicornId).src =
+      './images/unicorn-' + unicorns[unicornId] + '.png'
   }
 }
